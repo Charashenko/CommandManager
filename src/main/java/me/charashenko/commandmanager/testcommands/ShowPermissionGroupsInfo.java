@@ -1,7 +1,7 @@
 package me.charashenko.commandmanager.testcommands;
 
-import me.charashenko.commandmanager.argumenttypes.Option;
-import me.charashenko.commandmanager.argumenttypes.SubCommand;
+import me.charashenko.commandmanager.typesofarguments.Option;
+import me.charashenko.commandmanager.typesofarguments.SubCommand;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;

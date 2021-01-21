@@ -1,7 +1,7 @@
-package me.charashenko.commandmanager.testcommands.groups.options;
+package me.charashenko.commandmanager.testcommands.groups;
 
-import me.charashenko.commandmanager.argumenttypes.Option;
-import me.charashenko.commandmanager.argumenttypes.SubCommand;
+import me.charashenko.commandmanager.typesofarguments.Option;
+import me.charashenko.commandmanager.typesofarguments.SubCommand;
 import me.charashenko.commandmanager.testcommands.groups.subcommands.AddPlayer;
 import me.charashenko.commandmanager.testcommands.groups.subcommands.RmPlayer;
 import org.bukkit.command.CommandSender;

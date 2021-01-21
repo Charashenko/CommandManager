@@ -1,37 +1,26 @@
-package me.charashenko.commandmanager.testcommands.groups.subcommands;
+package me.charashenko.commandmanager.testcommands.players.subcommands;
 
 import me.charashenko.commandmanager.typesofarguments.Option;
 import me.charashenko.commandmanager.typesofarguments.SubCommand;
-import me.charashenko.commandmanager.testcommands.groups.GroupName;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class Group extends SubCommand {
-
-    private List<Option> options;
-
-    public Group() {
-        options = new ArrayList<>();
-        options.add(new GroupName());
-    }
+public class AddGroup extends SubCommand {
 
     @Override
     public String getName() {
-        return "group";
+        return "addgroup";
     }
 
     @Override
     public String getDescription() {
-        return "/perm group";
+        return null;
     }
 
     @Override
     public String getSyntax() {
-        return null;
+        return "/perm player <playername> addgroup <groupname>";
     }
 
     @Override
@@ -51,12 +40,12 @@ public class Group extends SubCommand {
 
     @Override
     public List<String> getTabSuggestions() {
-        return Collections.singletonList("group");
+        return null;
     }
 
     @Override
     public List<Option> getOptions() {
-        return options;
+        return null;
     }
 
     @Override
@@ -66,8 +55,6 @@ public class Group extends SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if(sender instanceof Player) {
-            sender.sendMessage(getDescription());
-        }
+
     }
 }

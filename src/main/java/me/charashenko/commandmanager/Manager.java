@@ -1,7 +1,8 @@
 package me.charashenko.commandmanager;
 
-import me.charashenko.commandmanager.argumenttypes.Option;
-import me.charashenko.commandmanager.argumenttypes.SubCommand;
+import me.charashenko.commandmanager.testcommands.players.subcommands.Player;
+import me.charashenko.commandmanager.typesofarguments.Option;
+import me.charashenko.commandmanager.typesofarguments.SubCommand;
 import me.charashenko.commandmanager.testcommands.ReloadPermissions;
 import me.charashenko.commandmanager.testcommands.ShowPermissionGroupsInfo;
 import me.charashenko.commandmanager.testcommands.groups.subcommands.Group;
@@ -21,6 +22,7 @@ public class Manager implements TabExecutor {
         subCommands.add(new Group());
         subCommands.add(new ReloadPermissions());
         subCommands.add(new ShowPermissionGroupsInfo());
+        subCommands.add(new Player());
     }
 
     @Override
@@ -51,8 +53,8 @@ public class Manager implements TabExecutor {
     private List<String> loopThroughCmdChainSuggestions(List<SubCommand> subCommands, CommandSender sender, String[] args) {
 
         if (args.length > 1) {
-
-        } else {   // suggest all subcommands of main command
+            //TODO Add Tab Completion for subcommands
+        } else {   // Suggests all subcommands of main command
             List<String> subCmdsNames = new ArrayList<>();
             for (SubCommand subCommand : subCommands) {
                 subCmdsNames.add(subCommand.getName());
@@ -71,7 +73,7 @@ public class Manager implements TabExecutor {
                     if (args.length > argIndex + 1) {
                         getCommand(subCommand.getSubCommands(), args, argIndex + 1, sender);
                     } else {
-                        for (String msg : subCommand.getTabSuggestions()) { // Tells player available next subcommands for current subcommand
+                        for (String msg : subCommand.getTabSuggestions()) { // Tells player next subcommands for current subcommand
                             sender.sendMessage(msg);
                         }
                     }
@@ -82,7 +84,7 @@ public class Manager implements TabExecutor {
                                 if (opt.hasSubCommands()) {
                                     if (args.length > argIndex + 2) {
                                         getCommand(opt.getSubCommands(), args, argIndex + 2, sender);
-                                    } else { // Tells player available next subcommands for current subcommand
+                                    } else { // Tells player next subcommands for current subcommand
                                         for (SubCommand cmd : opt.getSubCommands()) {
                                             sender.sendMessage(cmd.getName());
                                         }

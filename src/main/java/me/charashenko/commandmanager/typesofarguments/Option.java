@@ -1,4 +1,4 @@
-package me.charashenko.commandmanager.argumenttypes;
+package me.charashenko.commandmanager.typesofarguments;
 
 import org.bukkit.command.CommandSender;
 
@@ -18,6 +18,6 @@ public abstract class Option {
 
     public abstract List<SubCommand> getSubCommands();
 
-    public abstract void execute(CommandSender sender, String args[]);
+    public abstract void execute(CommandSender sender, String[] args);
 
 }

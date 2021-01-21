@@ -1,62 +1,60 @@
-package me.charashenko.commandmanager.testcommands.groups.subcommands;
+package me.charashenko.commandmanager.testcommands.players.subcommands;
 
+import me.charashenko.commandmanager.testcommands.players.PlayerName;
 import me.charashenko.commandmanager.typesofarguments.Option;
 import me.charashenko.commandmanager.typesofarguments.SubCommand;
-import me.charashenko.commandmanager.testcommands.groups.GroupName;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class Group extends SubCommand {
+public class Player extends SubCommand {
 
     private List<Option> options;
 
-    public Group() {
+    public Player() {
         options = new ArrayList<>();
-        options.add(new GroupName());
+        options.add(new PlayerName());
     }
 
     @Override
     public String getName() {
-        return "group";
+        return "player";
     }
 
     @Override
     public String getDescription() {
-        return "/perm group";
-    }
-
-    @Override
-    public String getSyntax() {
         return null;
     }
 
     @Override
+    public String getSyntax() {
+        return "/perm player";
+    }
+
+    @Override
     public Boolean isConsoleOnly() {
-        return false;
+        return null;
     }
 
     @Override
     public Boolean hasSubCommands() {
-        return false;
+        return null;
     }
 
     @Override
     public Boolean hasOptions() {
-        return true;
+        return null;
     }
 
     @Override
     public List<String> getTabSuggestions() {
-        return Collections.singletonList("group");
+        return null;
     }
 
     @Override
     public List<Option> getOptions() {
-        return options;
+        return null;
     }
 
     @Override
@@ -66,8 +64,6 @@ public class Group extends SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if(sender instanceof Player) {
-            sender.sendMessage(getDescription());
-        }
+
     }
 }
