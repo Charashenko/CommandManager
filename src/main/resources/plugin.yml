@@ -1,0 +1,7 @@
+name: CommandManager
+version: ${project.version}
+main: me.charashenko.commandmanager.CommandManager
+api-version: 1.16
+commands:
+  perm:
+    description: Base command from which all subcommands extend
