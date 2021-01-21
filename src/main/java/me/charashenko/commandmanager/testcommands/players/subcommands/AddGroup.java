@@ -1,5 +1,7 @@
 package me.charashenko.commandmanager.testcommands.players.subcommands;
 
+import me.charashenko.commandmanager.testcommands.endargs.GroupName;
+import me.charashenko.commandmanager.typesofarguments.EndArgument;
 import me.charashenko.commandmanager.typesofarguments.Option;
 import me.charashenko.commandmanager.typesofarguments.SubCommand;
 import org.bukkit.command.CommandSender;
@@ -7,6 +9,12 @@ import org.bukkit.command.CommandSender;
 import java.util.List;
 
 public class AddGroup extends SubCommand {
+
+    private EndArgument endArgument;
+
+    public AddGroup() {
+        endArgument = new GroupName();
+    }
 
     @Override
     public String getName() {
@@ -36,6 +44,16 @@ public class AddGroup extends SubCommand {
     @Override
     public Boolean hasOptions() {
         return true;
+    }
+
+    @Override
+    public Boolean hasEndArgument() {
+        return true;
+    }
+
+    @Override
+    public EndArgument getEndArgument() {
+        return endArgument;
     }
 
     @Override

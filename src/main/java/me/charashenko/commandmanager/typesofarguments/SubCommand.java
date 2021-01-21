@@ -18,6 +18,10 @@ public abstract class SubCommand {
 
     public abstract Boolean hasOptions();
 
+    public abstract Boolean hasEndArgument();
+
+    public abstract EndArgument getEndArgument();
+
     public abstract List<String> getTabSuggestions();
 
     public abstract List<Option> getOptions();

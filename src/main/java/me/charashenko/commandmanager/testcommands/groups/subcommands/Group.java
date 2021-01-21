@@ -1,5 +1,6 @@
 package me.charashenko.commandmanager.testcommands.groups.subcommands;
 
+import me.charashenko.commandmanager.typesofarguments.EndArgument;
 import me.charashenko.commandmanager.typesofarguments.Option;
 import me.charashenko.commandmanager.typesofarguments.SubCommand;
 import me.charashenko.commandmanager.testcommands.groups.GroupName;
@@ -47,6 +48,16 @@ public class Group extends SubCommand {
     @Override
     public Boolean hasOptions() {
         return true;
+    }
+
+    @Override
+    public Boolean hasEndArgument() {
+        return false;
+    }
+
+    @Override
+    public EndArgument getEndArgument() {
+        return null;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package me.charashenko.commandmanager.testcommands;
 
+import me.charashenko.commandmanager.typesofarguments.EndArgument;
 import me.charashenko.commandmanager.typesofarguments.Option;
 import me.charashenko.commandmanager.typesofarguments.SubCommand;
 import org.bukkit.command.CommandSender;
@@ -36,6 +37,16 @@ public class ShowPermissionGroupsInfo extends SubCommand {
     @Override
     public Boolean hasOptions() {
         return false;
+    }
+
+    @Override
+    public Boolean hasEndArgument() {
+        return false;
+    }
+
+    @Override
+    public EndArgument getEndArgument() {
+        return null;
     }
 
     @Override

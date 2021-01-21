@@ -1,6 +1,7 @@
 package me.charashenko.commandmanager.testcommands.players.subcommands;
 
 import me.charashenko.commandmanager.testcommands.players.PlayerName;
+import me.charashenko.commandmanager.typesofarguments.EndArgument;
 import me.charashenko.commandmanager.typesofarguments.Option;
 import me.charashenko.commandmanager.typesofarguments.SubCommand;
 import org.bukkit.command.CommandSender;
@@ -44,6 +45,16 @@ public class Player extends SubCommand {
 
     @Override
     public Boolean hasOptions() {
+        return null;
+    }
+
+    @Override
+    public Boolean hasEndArgument() {
+        return false;
+    }
+
+    @Override
+    public EndArgument getEndArgument() {
         return null;
     }
 
