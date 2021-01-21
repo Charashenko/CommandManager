@@ -1,4 +1,4 @@
-package me.charashenko.commandmanager.testcommands.endargs;
+package me.charashenko.commandmanager.commands.endargs;
 
 import me.charashenko.commandmanager.typesofarguments.EndArgument;
 import org.bukkit.command.CommandSender;
@@ -6,22 +6,16 @@ import org.bukkit.command.CommandSender;
 public class PlayerName extends EndArgument {
 
     @Override
-    public String getName() {
-        return "playername";
-    }
-
-    @Override
     public String getSyntax() {
         return "/perm group <groupname> addplayer/rmplayer <playername>";
     }
 
     @Override
-    public Boolean isConsoleOnly() {
-        return null;
-    }
-
-    @Override
     public void execute(CommandSender sender, String[] args) {
-
+        if (args[args.length - 2].equalsIgnoreCase("addplayer")) {
+            sender.sendMessage("Player " + args[args.length - 1] + " added");
+        } else if (args[args.length - 2].equalsIgnoreCase("rmplayer")) {
+            sender.sendMessage("Player " + args[args.length - 1] + " removed");
+        }
     }
 }

@@ -1,11 +1,13 @@
 package me.charashenko.commandmanager;
 
-import me.charashenko.commandmanager.testcommands.players.subcommands.Player;
+import me.charashenko.commandmanager.commands.Help;
+import me.charashenko.commandmanager.commands.players.subcommands.Player;
+import me.charashenko.commandmanager.typesofarguments.EndArgument;
 import me.charashenko.commandmanager.typesofarguments.Option;
 import me.charashenko.commandmanager.typesofarguments.SubCommand;
-import me.charashenko.commandmanager.testcommands.ReloadPermissions;
-import me.charashenko.commandmanager.testcommands.ShowPermissionGroupsInfo;
-import me.charashenko.commandmanager.testcommands.groups.subcommands.Group;
+import me.charashenko.commandmanager.commands.ReloadPermissions;
+import me.charashenko.commandmanager.commands.ShowPermissionGroupsInfo;
+import me.charashenko.commandmanager.commands.groups.subcommands.Group;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -23,15 +25,23 @@ public class Manager implements TabExecutor {
         subCommands.add(new ReloadPermissions());
         subCommands.add(new ShowPermissionGroupsInfo());
         subCommands.add(new Player());
+        subCommands.add(new Help());
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (args.length > 0) {
-            SubCommand cmd = getCommand(subCommands, args, 0, sender);
-            if (cmd != null) {
-                cmd.execute(sender, args);
+            Object cmd;
+            try {
+                cmd = getCommand(subCommands, args, 0, sender);
+                if (cmd instanceof SubCommand) {
+                    ((SubCommand) cmd).execute(sender, args);
+                } else if (cmd instanceof EndArgument) {
+                    ((EndArgument) cmd).execute(sender, args);
+                }
+            } catch (NullPointerException exception) {
+                exception.printStackTrace();
             }
         } else {
             sender.sendMessage("Options of /perm:");
@@ -65,7 +75,7 @@ public class Manager implements TabExecutor {
 
     }
 
-    private SubCommand getCommand(List<SubCommand> subCommands, String[] args, int argIndex, CommandSender sender) { //get instance of command
+    private Object getCommand(List<SubCommand> subCommands, String[] args, int argIndex, CommandSender sender) { //get instance of command
 
         for (SubCommand subCommand : subCommands) {
             if (subCommand.getName().equalsIgnoreCase(args[argIndex])) {
@@ -73,29 +83,38 @@ public class Manager implements TabExecutor {
                     if (args.length > argIndex + 1) {
                         getCommand(subCommand.getSubCommands(), args, argIndex + 1, sender);
                     } else {
-                        for (String msg : subCommand.getTabSuggestions()) { // Tells player next subcommands for current subcommand
-                            sender.sendMessage(msg);
-                        }
+                        subCommand.execute(sender, args);
+                        // Execute current command even if it's not completed
+                        // syntax warning is inside this command's execute function
                     }
                 } else if (subCommand.hasOptions()) {
                     if (args.length > argIndex + 1) {
                         for (Option opt : subCommand.getOptions()) {
-                            if (opt.getValidOptions().contains(args[argIndex + 1].toLowerCase())) {
+                            if (opt.getValidOptions().contains(args[argIndex + 1])) {
                                 if (opt.hasSubCommands()) {
                                     if (args.length > argIndex + 2) {
                                         getCommand(opt.getSubCommands(), args, argIndex + 2, sender);
-                                    } else { // Tells player next subcommands for current subcommand
-                                        for (SubCommand cmd : opt.getSubCommands()) {
-                                            sender.sendMessage(cmd.getName());
-                                        }
+                                    } else {
+                                        opt.execute(sender, args);
+                                        // Execute current command even if it's not completed
+                                        // syntax warning is inside this command's execute function
                                     }
                                 }
                             }
                         }
-                    } else { // Tells player all available options for subcommand
-                        for (Option opt : subCommand.getOptions()) {
-                            sender.sendMessage(opt.getSyntax());
-                        }
+                    } else {
+                        subCommand.execute(sender, args);
+                        // Execute current command even if it's not completed
+                        // syntax warning is inside this command's execute function
+                    }
+                } else if (subCommand.hasEndArgument()) {
+                    if (args.length > argIndex + 1) {
+                        subCommand.getEndArgument().execute(sender, args);
+                        return subCommand.getEndArgument();
+                    } else {
+                        subCommand.execute(sender, args);
+                        // Execute current command even if it's not completed
+                        // syntax warning is inside this command's execute function
                     }
                 } else {
                     return subCommand;

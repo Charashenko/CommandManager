@@ -1,9 +1,9 @@
-package me.charashenko.commandmanager.testcommands.groups;
+package me.charashenko.commandmanager.commands.groups;
 
 import me.charashenko.commandmanager.typesofarguments.Option;
 import me.charashenko.commandmanager.typesofarguments.SubCommand;
-import me.charashenko.commandmanager.testcommands.groups.subcommands.AddPlayer;
-import me.charashenko.commandmanager.testcommands.groups.subcommands.RmPlayer;
+import me.charashenko.commandmanager.commands.groups.subcommands.AddPlayer;
+import me.charashenko.commandmanager.commands.groups.subcommands.RmPlayer;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class GroupName extends Option {
 
     @Override
     public String getSyntax() {
-        return "/perm group <groupname>";
+        return "/perm group <groupname> <action>";
     }
 
     @Override
@@ -53,8 +53,9 @@ public class GroupName extends Option {
     @Override
     public void execute(CommandSender sender, String[] args) {
         sender.sendMessage(getSyntax());
-        for (String msg : getTabSuggestions()) {
-            sender.sendMessage(msg);
+        sender.sendMessage("Actions:");
+        for (SubCommand subCommand : subCommands) {
+            sender.sendMessage(subCommand.getName());
         }
     }
 }

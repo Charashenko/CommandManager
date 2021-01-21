@@ -1,26 +1,24 @@
-package me.charashenko.commandmanager.testcommands.players.subcommands;
+package me.charashenko.commandmanager.commands.players.subcommands;
 
-import me.charashenko.commandmanager.testcommands.players.PlayerName;
+import me.charashenko.commandmanager.commands.endargs.GroupName;
 import me.charashenko.commandmanager.typesofarguments.EndArgument;
 import me.charashenko.commandmanager.typesofarguments.Option;
 import me.charashenko.commandmanager.typesofarguments.SubCommand;
 import org.bukkit.command.CommandSender;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Player extends SubCommand {
+public class RmGroup extends SubCommand {
 
-    private List<Option> options;
+    private EndArgument endArgument;
 
-    public Player() {
-        options = new ArrayList<>();
-        options.add(new PlayerName());
+    public RmGroup() {
+        endArgument = new GroupName();
     }
 
     @Override
     public String getName() {
-        return "player";
+        return "rmgroup";
     }
 
     @Override
@@ -30,32 +28,32 @@ public class Player extends SubCommand {
 
     @Override
     public String getSyntax() {
-        return "/perm player";
+        return "/perm player <playername> rmgroup <groupname>";
     }
 
     @Override
     public Boolean isConsoleOnly() {
-        return null;
-    }
-
-    @Override
-    public Boolean hasSubCommands() {
-        return null;
-    }
-
-    @Override
-    public Boolean hasOptions() {
-        return null;
-    }
-
-    @Override
-    public Boolean hasEndArgument() {
         return false;
     }
 
     @Override
+    public Boolean hasSubCommands() {
+        return false;
+    }
+
+    @Override
+    public Boolean hasOptions() {
+        return false;
+    }
+
+    @Override
+    public Boolean hasEndArgument() {
+        return true;
+    }
+
+    @Override
     public EndArgument getEndArgument() {
-        return null;
+        return endArgument;
     }
 
     @Override

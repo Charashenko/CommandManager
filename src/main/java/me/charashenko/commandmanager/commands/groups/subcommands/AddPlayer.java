@@ -1,6 +1,6 @@
-package me.charashenko.commandmanager.testcommands.players.subcommands;
+package me.charashenko.commandmanager.commands.groups.subcommands;
 
-import me.charashenko.commandmanager.testcommands.endargs.GroupName;
+import me.charashenko.commandmanager.commands.endargs.PlayerName;
 import me.charashenko.commandmanager.typesofarguments.EndArgument;
 import me.charashenko.commandmanager.typesofarguments.Option;
 import me.charashenko.commandmanager.typesofarguments.SubCommand;
@@ -8,17 +8,17 @@ import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-public class RmGroup extends SubCommand {
+public class AddPlayer extends SubCommand {
 
     private EndArgument endArgument;
 
-    public RmGroup() {
-        endArgument = new GroupName();
+    public AddPlayer() {
+        endArgument = new PlayerName();
     }
 
     @Override
     public String getName() {
-        return "rmgroup";
+        return "addplayer";
     }
 
     @Override
@@ -28,7 +28,7 @@ public class RmGroup extends SubCommand {
 
     @Override
     public String getSyntax() {
-        return "/perm player <playername> rmgroup <groupname>";
+        return "/perm group <groupname> addplayer <playername>";
     }
 
     @Override
@@ -43,7 +43,7 @@ public class RmGroup extends SubCommand {
 
     @Override
     public Boolean hasOptions() {
-        return true;
+        return false;
     }
 
     @Override
@@ -73,6 +73,7 @@ public class RmGroup extends SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-
+        sender.sendMessage(getSyntax());
     }
+
 }

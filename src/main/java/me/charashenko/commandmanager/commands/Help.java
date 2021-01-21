@@ -1,4 +1,4 @@
-package me.charashenko.commandmanager.testcommands;
+package me.charashenko.commandmanager.commands;
 
 import me.charashenko.commandmanager.typesofarguments.EndArgument;
 import me.charashenko.commandmanager.typesofarguments.Option;
@@ -7,11 +7,11 @@ import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-public class ShowPermissionGroupsInfo extends SubCommand {
+public class Help extends SubCommand {
 
     @Override
     public String getName() {
-        return "showgroups";
+        return "help";
     }
 
     @Override
@@ -21,7 +21,7 @@ public class ShowPermissionGroupsInfo extends SubCommand {
 
     @Override
     public String getSyntax() {
-        return "/perm showgroups";
+        return "/perm help";
     }
 
     @Override
@@ -66,6 +66,6 @@ public class ShowPermissionGroupsInfo extends SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        sender.sendMessage(getSyntax());
+        sender.sendMessage("Help msg");
     }
 }

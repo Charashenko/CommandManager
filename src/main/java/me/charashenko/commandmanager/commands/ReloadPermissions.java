@@ -1,6 +1,5 @@
-package me.charashenko.commandmanager.testcommands.groups.subcommands;
+package me.charashenko.commandmanager.commands;
 
-import me.charashenko.commandmanager.testcommands.endargs.PlayerName;
 import me.charashenko.commandmanager.typesofarguments.EndArgument;
 import me.charashenko.commandmanager.typesofarguments.Option;
 import me.charashenko.commandmanager.typesofarguments.SubCommand;
@@ -8,17 +7,11 @@ import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-public class AddPlayer extends SubCommand {
-
-    private EndArgument endArgument;
-
-    public AddPlayer() {
-        endArgument = new PlayerName();
-    }
+public class ReloadPermissions extends SubCommand {
 
     @Override
     public String getName() {
-        return "addplayer";
+        return "reload";
     }
 
     @Override
@@ -28,7 +21,7 @@ public class AddPlayer extends SubCommand {
 
     @Override
     public String getSyntax() {
-        return "/perm group <groupname> addplayer <playername>";
+        return "/perm reload";
     }
 
     @Override
@@ -48,12 +41,12 @@ public class AddPlayer extends SubCommand {
 
     @Override
     public Boolean hasEndArgument() {
-        return true;
+        return false;
     }
 
     @Override
     public EndArgument getEndArgument() {
-        return endArgument;
+        return null;
     }
 
     @Override
@@ -75,5 +68,4 @@ public class AddPlayer extends SubCommand {
     public void execute(CommandSender sender, String[] args) {
         sender.sendMessage(getSyntax());
     }
-
 }

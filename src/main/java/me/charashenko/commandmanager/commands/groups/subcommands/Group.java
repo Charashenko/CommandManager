@@ -1,11 +1,10 @@
-package me.charashenko.commandmanager.testcommands.groups.subcommands;
+package me.charashenko.commandmanager.commands.groups.subcommands;
 
 import me.charashenko.commandmanager.typesofarguments.EndArgument;
 import me.charashenko.commandmanager.typesofarguments.Option;
 import me.charashenko.commandmanager.typesofarguments.SubCommand;
-import me.charashenko.commandmanager.testcommands.groups.GroupName;
+import me.charashenko.commandmanager.commands.groups.GroupName;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,12 +26,12 @@ public class Group extends SubCommand {
 
     @Override
     public String getDescription() {
-        return "/perm group";
+        return null;
     }
 
     @Override
     public String getSyntax() {
-        return null;
+        return "/perm group";
     }
 
     @Override
@@ -77,8 +76,6 @@ public class Group extends SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if(sender instanceof Player) {
-            sender.sendMessage(getDescription());
-        }
+        sender.sendMessage(getSyntax());
     }
 }

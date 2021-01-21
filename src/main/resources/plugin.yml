@@ -6,3 +6,4 @@ description: Minecraft plugin, CommandManager build for Paper 1.16.4
 commands:
   perm:
     description: Base command from which all subcommands extend
+    usage: If you want help, try /perm help

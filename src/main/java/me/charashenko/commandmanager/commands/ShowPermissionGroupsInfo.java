@@ -1,6 +1,5 @@
-package me.charashenko.commandmanager.testcommands.players.subcommands;
+package me.charashenko.commandmanager.commands;
 
-import me.charashenko.commandmanager.testcommands.endargs.GroupName;
 import me.charashenko.commandmanager.typesofarguments.EndArgument;
 import me.charashenko.commandmanager.typesofarguments.Option;
 import me.charashenko.commandmanager.typesofarguments.SubCommand;
@@ -8,17 +7,11 @@ import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-public class AddGroup extends SubCommand {
-
-    private EndArgument endArgument;
-
-    public AddGroup() {
-        endArgument = new GroupName();
-    }
+public class ShowPermissionGroupsInfo extends SubCommand {
 
     @Override
     public String getName() {
-        return "addgroup";
+        return "showgroups";
     }
 
     @Override
@@ -28,7 +21,7 @@ public class AddGroup extends SubCommand {
 
     @Override
     public String getSyntax() {
-        return "/perm player <playername> addgroup <groupname>";
+        return "/perm showgroups";
     }
 
     @Override
@@ -43,17 +36,17 @@ public class AddGroup extends SubCommand {
 
     @Override
     public Boolean hasOptions() {
-        return true;
+        return false;
     }
 
     @Override
     public Boolean hasEndArgument() {
-        return true;
+        return false;
     }
 
     @Override
     public EndArgument getEndArgument() {
-        return endArgument;
+        return null;
     }
 
     @Override
@@ -73,6 +66,6 @@ public class AddGroup extends SubCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-
+        sender.sendMessage(getSyntax());
     }
 }
