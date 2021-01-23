@@ -35,13 +35,10 @@ public class Manager implements TabExecutor {
         if (args.length > 0) {
             Object cmd = getCommand(subCommands, args, 0);
             if (cmd instanceof SubCommand) {
-                System.out.println("executing subcmd");
                 ((SubCommand) cmd).execute(sender, args);
             } else if (cmd instanceof VariableArgument) {
-                System.out.println("executing vararg");
                 ((VariableArgument) cmd).execute(sender, args);
             } else if (cmd instanceof EndArgument) {
-                System.out.println("executing endarg");
                 ((EndArgument) cmd).execute(sender, args);
             }
         } else {
