@@ -11,6 +11,16 @@ public class PlayerName extends EndArgument {
     }
 
     @Override
+    public String neededPermission() {
+        return null;
+    }
+
+    @Override
+    public boolean isPermissionOnly() {
+        return false;
+    }
+
+    @Override
     public void execute(CommandSender sender, String[] args) {
         if (args[args.length - 2].equalsIgnoreCase("addplayer")) {
             sender.sendMessage("Player " + args[args.length - 1] + " added");

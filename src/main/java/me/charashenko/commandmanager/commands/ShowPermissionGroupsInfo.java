@@ -24,19 +24,28 @@ public class ShowPermissionGroupsInfo extends SubCommand {
         return "Execute /perm showgroups";
     }
 
+    @Override
+    public String neededPermission() {
+        return null;
+    }
 
     @Override
-    public Boolean hasSubCommands() {
+    public boolean isPermissionOnly() {
         return false;
     }
 
     @Override
-    public Boolean hasVariableArgument() {
+    public boolean hasSubCommands() {
         return false;
     }
 
     @Override
-    public Boolean hasEndArgument() {
+    public boolean hasVariableArgument() {
+        return false;
+    }
+
+    @Override
+    public boolean hasEndArgument() {
         return false;
     }
 

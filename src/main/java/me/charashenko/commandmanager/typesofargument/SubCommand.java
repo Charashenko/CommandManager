@@ -12,11 +12,15 @@ public abstract class SubCommand {
 
     public abstract String getSyntax();
 
-    public abstract Boolean hasSubCommands();
+    public abstract String neededPermission();
 
-    public abstract Boolean hasVariableArgument();
+    public abstract boolean isPermissionOnly();
 
-    public abstract Boolean hasEndArgument();
+    public abstract boolean hasSubCommands();
+
+    public abstract boolean hasVariableArgument();
+
+    public abstract boolean hasEndArgument();
 
     public abstract VariableArgument getVariableArgument();
 

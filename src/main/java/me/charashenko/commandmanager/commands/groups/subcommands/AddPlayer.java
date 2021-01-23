@@ -35,17 +35,27 @@ public class AddPlayer extends SubCommand {
     }
 
     @Override
-    public Boolean hasSubCommands() {
+    public String neededPermission() {
+        return null;
+    }
+
+    @Override
+    public boolean isPermissionOnly() {
         return false;
     }
 
     @Override
-    public Boolean hasVariableArgument() {
+    public boolean hasSubCommands() {
         return false;
     }
 
     @Override
-    public Boolean hasEndArgument() {
+    public boolean hasVariableArgument() {
+        return false;
+    }
+
+    @Override
+    public boolean hasEndArgument() {
         return true;
     }
 

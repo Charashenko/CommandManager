@@ -1,27 +1,25 @@
 package me.charashenko.commandmanager.commands.groups.subcommands;
 
-import me.charashenko.commandmanager.commands.endargs.PlayerName;
+import me.charashenko.commandmanager.commands.endargs.Rank;
 import me.charashenko.commandmanager.typesofargument.EndArgument;
-import me.charashenko.commandmanager.typesofargument.VariableArgument;
 import me.charashenko.commandmanager.typesofargument.SubCommand;
-import org.bukkit.Bukkit;
+import me.charashenko.commandmanager.typesofargument.VariableArgument;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class RmPlayer extends SubCommand {
+public class SetRank extends SubCommand {
 
     private EndArgument endArgument;
 
-    public RmPlayer() {
-        endArgument = new PlayerName();
+    public SetRank() {
+        endArgument = new Rank();
     }
 
     @Override
     public String getName() {
-        return "rmplayer";
+        return "setrank";
     }
 
     @Override
@@ -31,7 +29,7 @@ public class RmPlayer extends SubCommand {
 
     @Override
     public String getSyntax() {
-        return "/perm group <groupname> rmplayer <playername>";
+        return "/perm group <groupname> setrank <rank>";
     }
 
     @Override
@@ -71,11 +69,7 @@ public class RmPlayer extends SubCommand {
 
     @Override
     public List<String> getTabSuggestions() {
-        List<String> playerNames = new ArrayList<>();
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            playerNames.add(player.getName());
-        }
-        return playerNames;
+        return Collections.singletonList("<number>");
     }
 
     @Override

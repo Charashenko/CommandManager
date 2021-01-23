@@ -1,5 +1,6 @@
 package me.charashenko.commandmanager.commands.groups.subcommands.variableargument;
 
+import me.charashenko.commandmanager.commands.groups.subcommands.SetRank;
 import me.charashenko.commandmanager.typesofargument.VariableArgument;
 import me.charashenko.commandmanager.typesofargument.SubCommand;
 import me.charashenko.commandmanager.commands.groups.subcommands.AddPlayer;
@@ -18,6 +19,7 @@ public class GroupNames extends VariableArgument {
         subCommands = new ArrayList<>();
         subCommands.add(new AddPlayer());
         subCommands.add(new RmPlayer());
+        subCommands.add(new SetRank());
     }
 
     @Override
@@ -26,7 +28,17 @@ public class GroupNames extends VariableArgument {
     }
 
     @Override
-    public Boolean hasSubCommands() {
+    public String neededPermission() {
+        return null;
+    }
+
+    @Override
+    public boolean isPermissionOnly() {
+        return false;
+    }
+
+    @Override
+    public boolean hasSubCommands() {
         return true;
     }
 

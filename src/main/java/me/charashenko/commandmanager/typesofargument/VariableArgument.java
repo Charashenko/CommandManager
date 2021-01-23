@@ -8,7 +8,11 @@ public abstract class VariableArgument {
 
     public abstract String getSyntax();
 
-    public abstract Boolean hasSubCommands();
+    public abstract String neededPermission();
+
+    public abstract boolean isPermissionOnly();
+
+    public abstract boolean hasSubCommands();
 
     public abstract List<String> getTabSuggestions();
 

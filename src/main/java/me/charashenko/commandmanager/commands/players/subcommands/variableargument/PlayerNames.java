@@ -27,7 +27,17 @@ public class PlayerNames extends VariableArgument {
     }
 
     @Override
-    public Boolean hasSubCommands() {
+    public String neededPermission() {
+        return null;
+    }
+
+    @Override
+    public boolean isPermissionOnly() {
+        return false;
+    }
+
+    @Override
+    public boolean hasSubCommands() {
         return true;
     }
 

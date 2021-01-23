@@ -36,11 +36,26 @@ public class Manager implements TabExecutor {
             try {
                 Object cmd = getCommand(subCommands, args, 0);
                 if (cmd instanceof SubCommand) {
-                    ((SubCommand) cmd).execute(sender, args);
+                    SubCommand subcmd = (SubCommand) cmd;
+                    if (subcmd.isPermissionOnly() && sender.hasPermission(subcmd.neededPermission())) {
+                        subcmd.execute(sender, args);
+                    } else if (!subcmd.isPermissionOnly()){
+                        subcmd.execute(sender, args);
+                    }
                 } else if (cmd instanceof VariableArgument) {
-                    ((VariableArgument) cmd).execute(sender, args);
+                    VariableArgument vararg = (VariableArgument) cmd;
+                    if (vararg.isPermissionOnly() && sender.hasPermission(vararg.neededPermission())) {
+                        vararg.execute(sender, args);
+                    } else if (!vararg.isPermissionOnly()){
+                        vararg.execute(sender, args);
+                    }
                 } else if (cmd instanceof EndArgument) {
-                    ((EndArgument) cmd).execute(sender, args);
+                    EndArgument endarg = (EndArgument) cmd;
+                    if (endarg.isPermissionOnly() && sender.hasPermission(endarg.neededPermission())) {
+                        endarg.execute(sender, args);
+                    } else if (!endarg.isPermissionOnly()){
+                        endarg.execute(sender, args);
+                    }
                 }
             } catch (NullPointerException exception) {
                 exception.printStackTrace();
