@@ -1,6 +1,6 @@
 package me.charashenko.commandmanager.commands.endargs;
 
-import me.charashenko.commandmanager.typesofarguments.EndArgument;
+import me.charashenko.commandmanager.typesofargument.EndArgument;
 import org.bukkit.command.CommandSender;
 
 public class PlayerName extends EndArgument {

@@ -1,8 +1,8 @@
 package me.charashenko.commandmanager.commands;
 
-import me.charashenko.commandmanager.typesofarguments.EndArgument;
-import me.charashenko.commandmanager.typesofarguments.Option;
-import me.charashenko.commandmanager.typesofarguments.SubCommand;
+import me.charashenko.commandmanager.typesofargument.EndArgument;
+import me.charashenko.commandmanager.typesofargument.VariableArgument;
+import me.charashenko.commandmanager.typesofargument.SubCommand;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
@@ -21,12 +21,7 @@ public class Help extends SubCommand {
 
     @Override
     public String getSyntax() {
-        return "/perm help";
-    }
-
-    @Override
-    public Boolean isConsoleOnly() {
-        return false;
+        return "Execute /perm help";
     }
 
     @Override
@@ -35,13 +30,18 @@ public class Help extends SubCommand {
     }
 
     @Override
-    public Boolean hasOptions() {
+    public Boolean hasVariableArgument() {
         return false;
     }
 
     @Override
     public Boolean hasEndArgument() {
         return false;
+    }
+
+    @Override
+    public VariableArgument getVariableArgument() {
+        return null;
     }
 
     @Override
@@ -55,17 +55,12 @@ public class Help extends SubCommand {
     }
 
     @Override
-    public List<Option> getOptions() {
-        return null;
-    }
-
-    @Override
     public List<SubCommand> getSubCommands() {
         return null;
     }
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        sender.sendMessage("Help msg");
+        sender.sendMessage(getSyntax());
     }
 }

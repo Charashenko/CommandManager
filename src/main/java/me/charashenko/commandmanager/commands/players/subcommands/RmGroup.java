@@ -1,9 +1,9 @@
 package me.charashenko.commandmanager.commands.players.subcommands;
 
 import me.charashenko.commandmanager.commands.endargs.GroupName;
-import me.charashenko.commandmanager.typesofarguments.EndArgument;
-import me.charashenko.commandmanager.typesofarguments.Option;
-import me.charashenko.commandmanager.typesofarguments.SubCommand;
+import me.charashenko.commandmanager.typesofargument.EndArgument;
+import me.charashenko.commandmanager.typesofargument.VariableArgument;
+import me.charashenko.commandmanager.typesofargument.SubCommand;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
@@ -32,17 +32,12 @@ public class RmGroup extends SubCommand {
     }
 
     @Override
-    public Boolean isConsoleOnly() {
-        return false;
-    }
-
-    @Override
     public Boolean hasSubCommands() {
         return false;
     }
 
     @Override
-    public Boolean hasOptions() {
+    public Boolean hasVariableArgument() {
         return false;
     }
 
@@ -52,17 +47,17 @@ public class RmGroup extends SubCommand {
     }
 
     @Override
+    public VariableArgument getVariableArgument() {
+        return null;
+    }
+
+    @Override
     public EndArgument getEndArgument() {
         return endArgument;
     }
 
     @Override
     public List<String> getTabSuggestions() {
-        return null;
-    }
-
-    @Override
-    public List<Option> getOptions() {
         return null;
     }
 

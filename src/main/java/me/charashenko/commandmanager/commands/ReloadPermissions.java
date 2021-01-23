@@ -1,8 +1,8 @@
 package me.charashenko.commandmanager.commands;
 
-import me.charashenko.commandmanager.typesofarguments.EndArgument;
-import me.charashenko.commandmanager.typesofarguments.Option;
-import me.charashenko.commandmanager.typesofarguments.SubCommand;
+import me.charashenko.commandmanager.typesofargument.EndArgument;
+import me.charashenko.commandmanager.typesofargument.VariableArgument;
+import me.charashenko.commandmanager.typesofargument.SubCommand;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
@@ -21,12 +21,7 @@ public class ReloadPermissions extends SubCommand {
 
     @Override
     public String getSyntax() {
-        return "/perm reload";
-    }
-
-    @Override
-    public Boolean isConsoleOnly() {
-        return false;
+        return "Execute /perm reload";
     }
 
     @Override
@@ -35,7 +30,7 @@ public class ReloadPermissions extends SubCommand {
     }
 
     @Override
-    public Boolean hasOptions() {
+    public Boolean hasVariableArgument() {
         return false;
     }
 
@@ -45,17 +40,17 @@ public class ReloadPermissions extends SubCommand {
     }
 
     @Override
+    public VariableArgument getVariableArgument() {
+        return null;
+    }
+
+    @Override
     public EndArgument getEndArgument() {
         return null;
     }
 
     @Override
     public List<String> getTabSuggestions() {
-        return null;
-    }
-
-    @Override
-    public List<Option> getOptions() {
         return null;
     }
 

@@ -1,9 +1,9 @@
-package me.charashenko.commandmanager.commands.players;
+package me.charashenko.commandmanager.commands.players.subcommands.variableargument;
 
 import me.charashenko.commandmanager.commands.players.subcommands.AddGroup;
 import me.charashenko.commandmanager.commands.players.subcommands.RmGroup;
-import me.charashenko.commandmanager.typesofarguments.Option;
-import me.charashenko.commandmanager.typesofarguments.SubCommand;
+import me.charashenko.commandmanager.typesofargument.VariableArgument;
+import me.charashenko.commandmanager.typesofargument.SubCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -11,19 +11,14 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerName extends Option {
+public class PlayerNames extends VariableArgument {
 
     private List<SubCommand> subCommands;
 
-    public PlayerName() {
+    public PlayerNames() {
         subCommands = new ArrayList<>();
         subCommands.add(new AddGroup());
         subCommands.add(new RmGroup());
-    }
-
-    @Override
-    public String getName() {
-        return "playername";
     }
 
     @Override
@@ -46,7 +41,7 @@ public class PlayerName extends Option {
     }
 
     @Override
-    public List<String> getValidOptions() {
+    public List<String> getValidArguments() {
         List<String> playerNames = new ArrayList<>();
         for (Player player : Bukkit.getOnlinePlayers()) {
             playerNames.add(player.getName());
@@ -62,9 +57,5 @@ public class PlayerName extends Option {
     @Override
     public void execute(CommandSender sender, String[] args) {
         sender.sendMessage(getSyntax());
-        sender.sendMessage("Actions:");
-        for (String msg : getTabSuggestions()) {
-            sender.sendMessage(msg);
-        }
     }
 }

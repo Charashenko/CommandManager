@@ -1,22 +1,20 @@
 package me.charashenko.commandmanager.commands.players.subcommands;
 
-import me.charashenko.commandmanager.commands.players.PlayerName;
-import me.charashenko.commandmanager.typesofarguments.EndArgument;
-import me.charashenko.commandmanager.typesofarguments.Option;
-import me.charashenko.commandmanager.typesofarguments.SubCommand;
+import me.charashenko.commandmanager.commands.players.subcommands.variableargument.PlayerNames;
+import me.charashenko.commandmanager.typesofargument.EndArgument;
+import me.charashenko.commandmanager.typesofargument.VariableArgument;
+import me.charashenko.commandmanager.typesofargument.SubCommand;
 import org.bukkit.command.CommandSender;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Player extends SubCommand {
 
-    private List<Option> options;
+    private VariableArgument variableArgument;
 
     public Player() {
-        options = new ArrayList<>();
-        options.add(new PlayerName());
+        variableArgument = new PlayerNames();
     }
 
     @Override
@@ -35,17 +33,12 @@ public class Player extends SubCommand {
     }
 
     @Override
-    public Boolean isConsoleOnly() {
-        return false;
-    }
-
-    @Override
     public Boolean hasSubCommands() {
         return false;
     }
 
     @Override
-    public Boolean hasOptions() {
+    public Boolean hasVariableArgument() {
         return true;
     }
 
@@ -55,18 +48,18 @@ public class Player extends SubCommand {
     }
 
     @Override
+    public VariableArgument getVariableArgument() {
+        return variableArgument;
+    }
+
+    @Override
     public EndArgument getEndArgument() {
         return null;
     }
 
     @Override
     public List<String> getTabSuggestions() {
-        return Collections.singletonList("player");
-    }
-
-    @Override
-    public List<Option> getOptions() {
-        return options;
+        return getVariableArgument().getValidArguments();
     }
 
     @Override

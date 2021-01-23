@@ -1,4 +1,4 @@
-package me.charashenko.commandmanager.typesofarguments;
+package me.charashenko.commandmanager.typesofargument;
 
 import org.bukkit.command.CommandSender;
 
@@ -12,19 +12,17 @@ public abstract class SubCommand {
 
     public abstract String getSyntax();
 
-    public abstract Boolean isConsoleOnly();
-
     public abstract Boolean hasSubCommands();
 
-    public abstract Boolean hasOptions();
+    public abstract Boolean hasVariableArgument();
 
     public abstract Boolean hasEndArgument();
+
+    public abstract VariableArgument getVariableArgument();
 
     public abstract EndArgument getEndArgument();
 
     public abstract List<String> getTabSuggestions();
-
-    public abstract List<Option> getOptions();
 
     public abstract List<SubCommand> getSubCommands();
 

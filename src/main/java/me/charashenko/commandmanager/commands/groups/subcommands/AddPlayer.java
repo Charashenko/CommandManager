@@ -1,11 +1,14 @@
 package me.charashenko.commandmanager.commands.groups.subcommands;
 
 import me.charashenko.commandmanager.commands.endargs.PlayerName;
-import me.charashenko.commandmanager.typesofarguments.EndArgument;
-import me.charashenko.commandmanager.typesofarguments.Option;
-import me.charashenko.commandmanager.typesofarguments.SubCommand;
+import me.charashenko.commandmanager.typesofargument.EndArgument;
+import me.charashenko.commandmanager.typesofargument.VariableArgument;
+import me.charashenko.commandmanager.typesofargument.SubCommand;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddPlayer extends SubCommand {
@@ -32,17 +35,12 @@ public class AddPlayer extends SubCommand {
     }
 
     @Override
-    public Boolean isConsoleOnly() {
-        return false;
-    }
-
-    @Override
     public Boolean hasSubCommands() {
         return false;
     }
 
     @Override
-    public Boolean hasOptions() {
+    public Boolean hasVariableArgument() {
         return false;
     }
 
@@ -52,18 +50,22 @@ public class AddPlayer extends SubCommand {
     }
 
     @Override
+    public VariableArgument getVariableArgument() {
+        return null;
+    }
+
+    @Override
     public EndArgument getEndArgument() {
         return endArgument;
     }
 
     @Override
     public List<String> getTabSuggestions() {
-        return null;
-    }
-
-    @Override
-    public List<Option> getOptions() {
-        return null;
+        List<String> playerNames = new ArrayList<>();
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            playerNames.add(player.getName());
+        }
+        return playerNames;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package me.charashenko.commandmanager.typesofarguments;
+package me.charashenko.commandmanager.typesofargument;
 
 import org.bukkit.command.CommandSender;
 

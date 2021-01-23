@@ -1,7 +1,7 @@
-package me.charashenko.commandmanager.commands.groups;
+package me.charashenko.commandmanager.commands.groups.subcommands.variableargument;
 
-import me.charashenko.commandmanager.typesofarguments.Option;
-import me.charashenko.commandmanager.typesofarguments.SubCommand;
+import me.charashenko.commandmanager.typesofargument.VariableArgument;
+import me.charashenko.commandmanager.typesofargument.SubCommand;
 import me.charashenko.commandmanager.commands.groups.subcommands.AddPlayer;
 import me.charashenko.commandmanager.commands.groups.subcommands.RmPlayer;
 import org.bukkit.command.CommandSender;
@@ -10,19 +10,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class GroupName extends Option {
+public class GroupNames extends VariableArgument {
 
     private List<SubCommand> subCommands;
 
-    public GroupName() {
+    public GroupNames() {
         subCommands = new ArrayList<>();
         subCommands.add(new AddPlayer());
         subCommands.add(new RmPlayer());
-    }
-
-    @Override
-    public String getName() {
-        return "groupname";
     }
 
     @Override
@@ -37,11 +32,15 @@ public class GroupName extends Option {
 
     @Override
     public List<String> getTabSuggestions() {
-        return Arrays.asList("Owner", "Admin", "Player");
+        List<String> subCmdNames = new ArrayList<>();
+        for (SubCommand subCommand : subCommands) {
+            subCmdNames.add(subCommand.getName());
+        }
+        return subCmdNames;
     }
 
     @Override
-    public List<String> getValidOptions() {
+    public List<String> getValidArguments() {
         return Arrays.asList("owner", "admin", "player");
     }
 

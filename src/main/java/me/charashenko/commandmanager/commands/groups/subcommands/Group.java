@@ -1,22 +1,19 @@
 package me.charashenko.commandmanager.commands.groups.subcommands;
 
-import me.charashenko.commandmanager.typesofarguments.EndArgument;
-import me.charashenko.commandmanager.typesofarguments.Option;
-import me.charashenko.commandmanager.typesofarguments.SubCommand;
-import me.charashenko.commandmanager.commands.groups.GroupName;
+import me.charashenko.commandmanager.typesofargument.EndArgument;
+import me.charashenko.commandmanager.typesofargument.VariableArgument;
+import me.charashenko.commandmanager.typesofargument.SubCommand;
+import me.charashenko.commandmanager.commands.groups.subcommands.variableargument.GroupNames;
 import org.bukkit.command.CommandSender;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Group extends SubCommand {
 
-    private List<Option> options;
+    private VariableArgument variableArgument;
 
     public Group() {
-        options = new ArrayList<>();
-        options.add(new GroupName());
+        variableArgument = new GroupNames();
     }
 
     @Override
@@ -31,12 +28,7 @@ public class Group extends SubCommand {
 
     @Override
     public String getSyntax() {
-        return "/perm group";
-    }
-
-    @Override
-    public Boolean isConsoleOnly() {
-        return false;
+        return "/perm group <groupname>";
     }
 
     @Override
@@ -45,7 +37,7 @@ public class Group extends SubCommand {
     }
 
     @Override
-    public Boolean hasOptions() {
+    public Boolean hasVariableArgument() {
         return true;
     }
 
@@ -55,18 +47,18 @@ public class Group extends SubCommand {
     }
 
     @Override
+    public VariableArgument getVariableArgument() {
+        return variableArgument;
+    }
+
+    @Override
     public EndArgument getEndArgument() {
         return null;
     }
 
     @Override
     public List<String> getTabSuggestions() {
-        return Collections.singletonList("group");
-    }
-
-    @Override
-    public List<Option> getOptions() {
-        return options;
+        return variableArgument.getValidArguments();
     }
 
     @Override
