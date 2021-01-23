@@ -33,13 +33,17 @@ public class Manager implements TabExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (args.length > 0) {
-            Object cmd = getCommand(subCommands, args, 0);
-            if (cmd instanceof SubCommand) {
-                ((SubCommand) cmd).execute(sender, args);
-            } else if (cmd instanceof VariableArgument) {
-                ((VariableArgument) cmd).execute(sender, args);
-            } else if (cmd instanceof EndArgument) {
-                ((EndArgument) cmd).execute(sender, args);
+            try {
+                Object cmd = getCommand(subCommands, args, 0);
+                if (cmd instanceof SubCommand) {
+                    ((SubCommand) cmd).execute(sender, args);
+                } else if (cmd instanceof VariableArgument) {
+                    ((VariableArgument) cmd).execute(sender, args);
+                } else if (cmd instanceof EndArgument) {
+                    ((EndArgument) cmd).execute(sender, args);
+                }
+            } catch (NullPointerException exception) {
+                exception.printStackTrace();
             }
         } else {
             return false;
@@ -51,9 +55,8 @@ public class Manager implements TabExecutor {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 
         if (args.length > 1) {
-            Object cmd;
             try {
-                cmd = getCommand(subCommands, Arrays.copyOf(args, args.length - 1), 0);
+                Object cmd = getCommand(subCommands, Arrays.copyOf(args, args.length - 1), 0);
                 if (cmd instanceof SubCommand) {
                     return ((SubCommand) cmd).getTabSuggestions();
                 } else if (cmd instanceof VariableArgument) {
